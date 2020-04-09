@@ -24,7 +24,6 @@ pipeline {
 						bat 'mvn clean test'
 					} catch (e) {
 						echo "error"
-						throw
 					}
 				}
 			}
