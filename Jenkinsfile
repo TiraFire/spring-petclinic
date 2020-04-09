@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
+        stages {
         stage('Build') {
           when {
             expression {
@@ -33,13 +34,15 @@ pipeline {
             echo env.testpassed+" bye"
           }
         }
-      }
-    }
-    stage('IncreaseCount') {
+        }
+        stage('IncreaseCount') {
           steps {
             echo 'Hello'
           }
         }
+      }
+    }
+    
 
   }
   environment {
