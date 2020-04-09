@@ -6,11 +6,6 @@ pipeline {
   }
   stages {
     stage('Parent') {
-        when {
-          expression {
-            env.increase == 'false'
-          }
-        }
         stages {
           stage('Build') {
             steps {
