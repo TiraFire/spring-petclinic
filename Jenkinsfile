@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
             echo env.BuildHash;
-            echo env.Count;
+            echo env.CommitCount;
         //bat './mvnw package'
       }
     }
