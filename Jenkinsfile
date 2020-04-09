@@ -1,18 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('CountIncrease') {
-            when {
-              expression { env.BuildHash != '' && env.CommitCount < 8 }
-            }
-            steps {
-                  echo env.CommitCount
-                  echo env.BuildHash
-                  echo GIT_COMMIT
-                  env.CommitCount = env.CommitCount + 1
-                  env.increase = false;
-            }
-    }
     stage('Build') {
       when {
         expression { return env.increase }
