@@ -18,6 +18,7 @@ pipeline {
     stage('Package') {
       when {
         expression { return env.testpassed }
+      }
       steps {
         echo env.testpassed + " hello"
       }
