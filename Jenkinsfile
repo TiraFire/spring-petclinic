@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-            echo env.BuildHash;  //bat './mvnw package'
+            echo env.BuildHash;
+            echo env.Count;
+        //bat './mvnw package'
       }
     }
      stage('Test') { 
