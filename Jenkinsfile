@@ -9,7 +9,7 @@ pipeline {
 				}
 			}
 			steps {
-				echo "attempt1
+				echo "attempt1"
 			}
 		}
 	}
