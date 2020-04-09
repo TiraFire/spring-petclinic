@@ -9,25 +9,27 @@ pipeline {
             when {
                env.BuildHash != '' AND env.CommitCount < 8
             }
-      steps {
-            echo env.CommitCount
-            echo env.BuildHash
-            echo GIT_COMMIT
-            env.CommitCount = env.CommitCount + 1
-            env.increase = true;
-      }
-      stage('Parent') {
-            when {
-              expression {
-                env.increase == false
-              }
+            steps {
+                  echo env.CommitCount
+                  echo env.BuildHash
+                  echo GIT_COMMIT
+                  env.CommitCount = env.CommitCount + 1
+                  env.increase = true;
             }
+    }
+    stage('Parent') {
+        when {
+          expression {
+            env.increase == false
+          }
+        }
         stages {
           stage('Build') {
             steps {
               echo env.CommitCount
               echo env.BuildHash
               //bat './mvnw package'
+            
             }
           }
           stage('Test') {
@@ -50,6 +52,7 @@ pipeline {
               echo 'Package'
             }
           }
-
+        }
     }
   }
+}
