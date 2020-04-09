@@ -2,8 +2,12 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      when {
+            expression {
+            }
+        }
       steps {
-        bat './mvnw package'
+            echo env.BuildHash;  //bat './mvnw package'
       }
     }
      stage('Test') { 
@@ -19,7 +23,7 @@ pipeline {
     stage('Deploy') { 
          when {
                 expression {
-                    GIT_BRANCH == 'master'
+                    GIT_BRANCH != 'master'
                 }
             }
         steps {
