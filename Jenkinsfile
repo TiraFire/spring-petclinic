@@ -2,13 +2,27 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      when {
-        expression { return env.increase }
-      }
-      steps {
-        echo env.CommitCount
-        echo env.BuildHash
-        echo GIT_COMMIT
+      parallel {
+        stage('Build') {
+          when {
+            expression {
+              return env.increase
+            }
+
+          }
+          steps {
+            echo env.CommitCount
+            echo env.BuildHash
+            echo GIT_COMMIT
+          }
+        }
+
+        stage('IncreaseCount') {
+          steps {
+            echo 'Hello'
+          }
+        }
+
       }
     }
 
