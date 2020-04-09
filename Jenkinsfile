@@ -2,10 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      when {
-            expression {
-            }
-        }
       steps {
             echo env.BuildHash;  //bat './mvnw package'
       }
