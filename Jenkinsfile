@@ -11,6 +11,7 @@ pipeline {
             env.increase == false
           }
         }
+      steps {
         stages {
           stage('Build') {
             steps {
@@ -42,6 +43,7 @@ pipeline {
             }
           }
         }
+      }
     }
   }
 }
