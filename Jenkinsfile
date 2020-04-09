@@ -1,17 +1,16 @@
 pipeline {
   agent any
   environment {
-     increase = false
-     testpassed = true
+     increase = 'false'
+     testpassed = 'true'
   }
   stages {
     stage('Parent') {
         when {
           expression {
-            env.increase == false
+            env.increase == 'false'
           }
         }
-      steps {
         stages {
           stage('Build') {
             steps {
@@ -19,7 +18,6 @@ pipeline {
               echo env.BuildHash
               echo GIT_COMMIT
               //bat './mvnw package'
-            
             }
           }
           stage('Test') {
@@ -43,7 +41,6 @@ pipeline {
             }
           }
         }
-      }
     }
   }
 }
