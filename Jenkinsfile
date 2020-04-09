@@ -4,8 +4,6 @@ pipeline {
      increase = 'false'
      testpassed = 'true'
   }
-  stages {
-    stage('Parent') {
         stages {
           stage('Build') {
             steps {
@@ -36,6 +34,4 @@ pipeline {
             }
           }
         }
-    }
-  }
 }
