@@ -1,16 +1,22 @@
 pipeline {
   agent any
   stages {
-    stage('One') {
-      steps {
-        echo "hello"
-      }
-    }
+		stage('One') {
+			when {
+				expression { env.Hash == '' || env.CC >= 8 }
+			steps {
+				echo "hello"
+			}
+		}
+		
   }
+  post {
+		always { echo "whazzza" }
+	}
   environment {
-    increase = 'true'
-    testpassed = 'true'
-	CommitCount = 0
-	Hash = ''
+		increase = 'true'
+		testpassed = 'true'
+		CC = 0
+		Hash = ''
   }
 }
