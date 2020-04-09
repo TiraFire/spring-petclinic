@@ -18,7 +18,7 @@ pipeline {
     stage('Package') {
       when {
         expression {
-          env.testpassed == 'true'
+          true == true
         }
       }
       steps {
