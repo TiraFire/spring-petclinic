@@ -1,40 +1,54 @@
 pipeline {
   agent any
-  stages {
-    stage('Build') {
-      when {
-        expression {
-          env.BuildHash = '' OR env.CommitCount >= 8
-        }
-      }
-      steps {
-        echo env.CommitCount
-        echo env.BuildHash
-      }
-    }
-
-    stage('Test') {
-      steps {
-        echo 'Testing'
-      }
-    }
-
-    stage('Package') {
-      steps {
-        echo 'Package'
-      }
-    }
-
-    stage('Deploy') {
-      when {
-        expression {
-          GIT_BRANCH != 'master'
-        }
-      }
-      steps {
-        echo 'Deploy'
-      }
-    }
-
+  environment {
+     increase = false
+     testpassed = true
   }
-}
+  stages {
+    stage('CountIncrease') {
+            when {
+               env.BuildHash != '' AND env.CommitCount < 8
+            }
+      steps {
+            echo env.CommitCount
+            echo env.BuildHash
+            echo GIT_COMMIT
+            env.CommitCount = env.CommitCount + 1
+            env.increase = true;
+      }
+      stage('Parent') {
+            when {
+              expression {
+                env.increase == false
+              }
+            }
+        stages {
+          stage('Build') {
+            steps {
+              echo env.CommitCount
+              echo env.BuildHash
+              //bat './mvnw package'
+            }
+          }
+          stage('Test') {
+            steps {
+              try{
+                bat "mvn clean test"
+              }catch (Exception e){
+                 testpassed = false
+              }
+            }
+          }
+          stage('Package') {
+            when {
+              expression {
+                testpassed == true
+              }
+            }
+            steps {
+              echo 'Package'
+            }
+          }
+
+    }
+  }
