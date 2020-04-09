@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('CountIncrease') {
             when {
-               env.BuildHash != '' AND env.CommitCount < 8
+               env.BuildHash != '' && env.CommitCount < 8
             }
             steps {
                   echo env.CommitCount
