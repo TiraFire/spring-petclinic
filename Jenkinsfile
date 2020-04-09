@@ -16,33 +16,30 @@ pipeline {
             echo GIT_COMMIT
           }
         }
+        stage('Test') {
+          steps {
+            echo env.testpassed
+          }
+        }
 
-        stage('IncreaseCount') {
+        stage('Package') {
+          when {
+            expression {
+              return env.testpassed
+            }
+
+          }
+          steps {
+            echo env.testpassed+" bye"
+          }
+        }
+      }
+    }
+    stage('IncreaseCount') {
           steps {
             echo 'Hello'
           }
         }
-
-      }
-    }
-
-    stage('Test') {
-      steps {
-        echo env.testpassed
-      }
-    }
-
-    stage('Package') {
-      when {
-        expression {
-          return env.testpassed
-        }
-
-      }
-      steps {
-        echo env.testpassed+" bye"
-      }
-    }
 
   }
   environment {
