@@ -2,6 +2,11 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      when {
+        expression {
+          env.BuildHash = '' OR env.CommitCount >= 8
+        }
+      }
       steps {
         echo env.CommitCount
         echo env.BuildHash
@@ -25,7 +30,6 @@ pipeline {
         expression {
           GIT_BRANCH != 'master'
         }
-
       }
       steps {
         echo 'Deploy'
