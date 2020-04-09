@@ -17,7 +17,7 @@ pipeline {
   environment {
 		increase = 'true'
 		testpassed = 'true'
-		CC = 0
-		Hash = ''
+		CC = '0'
+		Hash = 'none'
   }
 }
