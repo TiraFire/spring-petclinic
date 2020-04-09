@@ -2,13 +2,16 @@ pipeline {
 	agent any
 	stages {
 		stage('One') {
-			if (env.Hash == 'none' || env.CC >= 8) {
-				steps {
-					echo "hello"
+			when {
+				anyOf {
+					environment name: 'Hash', value: 'none'
+					expression { env.CC >= 0 }
 				}
 			}
+			steps {
+				echo "attempt1
+			}
 		}
-		
 	}
 	post {
 		always { echo "whazzza" }
