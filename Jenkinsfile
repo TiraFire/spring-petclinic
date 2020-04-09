@@ -32,17 +32,18 @@ pipeline {
           }
           stage('Test') {
             steps {
-              try{
+              /*try{
                 bat "mvn clean test"
               }catch (Exception e){
                  testpassed = false
-              }
+              }*/
+              echo env.testpassed
             }
           }
           stage('Package') {
             when {
               expression {
-                testpassed == true
+                env.testpassed == true
               }
             }
             steps {
