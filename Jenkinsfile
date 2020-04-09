@@ -5,18 +5,6 @@ pipeline {
      testpassed = true
   }
   stages {
-    stage('CountIncrease') {
-            when {
-               env.BuildHash != '' && env.CommitCount < 8
-            }
-            steps {
-                  echo env.CommitCount
-                  echo env.BuildHash
-                  echo GIT_COMMIT
-                  env.CommitCount = env.CommitCount + 1
-                  env.increase = true;
-            }
-    }
     stage('Parent') {
         when {
           expression {
@@ -28,6 +16,7 @@ pipeline {
             steps {
               echo env.CommitCount
               echo env.BuildHash
+              echo GIT_COMMIT
               //bat './mvnw package'
             
             }
