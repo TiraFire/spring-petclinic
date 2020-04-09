@@ -19,10 +19,13 @@ pipeline {
 				expression { return env.increase }
 			}
 			steps {
-				try {
-					bat 'mvn clean test'
-				} catch (err) {
-					echo "error"
+				script {
+					try {
+						bat 'mvn clean test'
+					} catch (e) {
+						echo "error"
+						throw
+					}
 				}
 			}
 		}
