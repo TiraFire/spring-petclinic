@@ -16,11 +16,6 @@ pipeline {
     }
 
     stage('Package') {
-      when {
-        expression {
-          true == true
-        }
-      }
       steps {
         echo 'Package'
       }
