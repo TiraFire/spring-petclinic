@@ -17,10 +17,13 @@ pipeline {
 
     stage('Package') {
       when {
-        expression { return env.testpassed }
+        expression {
+          return env.testpassed
+        }
+
       }
       steps {
-        echo env.testpassed + " hello"
+        echo env.testpassed+" hello"
       }
     }
 
