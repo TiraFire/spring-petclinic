@@ -3,7 +3,7 @@ pipeline {
   stages {
 		stage('One') {
 			when {
-				expression { env.Hash == 'none' || env.CC >= 8 }
+				expression { environment name: 'Hash', value: 'none' || env.CC >= 8 }
 				}
 			steps {
 				echo "hello"
