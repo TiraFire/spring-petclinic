@@ -11,9 +11,9 @@ pipeline {
 			}
 			steps {
 				echo "Building"
-                                script {
-                                        env.increase = 'true'
-                                }
+				script {
+                    env.increase = 'true'
+				}
 			}
 		}
 		stage('Test') {
@@ -23,7 +23,7 @@ pipeline {
 			steps {
 				script {
 					try {
-						bat 'mvn clean test'
+						echo "Testing"//bat 'mvn clean test'
 					} catch (e) {
 						echo "error"
 					}
@@ -32,7 +32,11 @@ pipeline {
 		}
 	}
 	post {
-		always { echo "whazzza" }
+		always { 
+			script {
+				env.CC = env.CC + '1'
+			}
+		}
 	}
 	environment {
 		increase = 'false'
