@@ -33,9 +33,11 @@ pipeline {
 	}
 	post {
 		always { 
+                        echo env.CC
 			script {
 				env.CC = env.CC + '1'
 			}
+                        echo env.CC
 		}
 	}
 	environment {
