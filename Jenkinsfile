@@ -10,8 +10,8 @@ pipeline {
 				branch 'master'
 			}
 			steps {
-				env.increase = 'true'
 				echo "Building"
+                                env.increase = 'true'
 			}
 		}
 		stage('Test') {
