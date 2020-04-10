@@ -11,7 +11,9 @@ pipeline {
 			}
 			steps {
 				echo "Building"
-                                env.increase = 'true'
+                                script {
+                                        env.increase = 'true'
+                                }
 			}
 		}
 		stage('Test') {
