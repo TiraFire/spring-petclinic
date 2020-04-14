@@ -12,7 +12,7 @@ pipeline {
 			steps {
 				echo BUILD_NUMBER
 				script {
-                    env.increase = 'true'
+                                        env.increase = 'true'
 				}
 			}
 		}
@@ -33,7 +33,7 @@ pipeline {
 	}
 	post {
 		always { 
-                        echo BUILD_NUMBER
+                        echo "tryinggggintgwge"
 		}
 	}
 	environment {
