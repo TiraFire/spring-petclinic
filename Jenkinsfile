@@ -33,7 +33,7 @@ pipeline {
 	}
 	post {
 		always { 
-                        echo "tryinggggintgwge"
+                        echo env.BUILD_NUMBER
 		}
 	}
 	environment {
