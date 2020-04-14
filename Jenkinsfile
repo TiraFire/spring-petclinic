@@ -4,13 +4,13 @@ pipeline {
 		stage('BuildOrNotToBuild') {
 			when {
 				anyOf {
-					environment name: 'Hash', value: 'none'
-					expression { env.CC >= 0 }
+					//GIT_COMMIT != null
+					expression { BUILD_NUMBER >= 8 }
 				}
 				branch 'master'
 			}
 			steps {
-				echo BUILD_NUMBER
+                                echo GIT_COMMIT
 				script {
                                         env.increase = 'true'
 				}
@@ -33,8 +33,10 @@ pipeline {
 	}
 	post {
 		always { 
-                        echo env.BUILD_NUMBER
+                        
+                        echo BUILD_NUMBER
 		}
+                
 	}
 	environment {
 		increase = 'false'
