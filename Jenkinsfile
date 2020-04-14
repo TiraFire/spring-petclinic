@@ -10,7 +10,7 @@ pipeline {
 				branch 'master'
 			}
 			steps {
-				echo "Building"
+				echo BUILD_NUMBER
 				script {
                     env.increase = 'true'
 				}
